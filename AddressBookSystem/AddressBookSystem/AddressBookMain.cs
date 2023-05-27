@@ -271,6 +271,41 @@ namespace AddressBookSystem
                 Console.WriteLine("Address book not found.");
             }
         }
+        public void ExportContactsJson()
+        {
+            Console.WriteLine("Enter the name of the address book to export contacts:");
+            string addressBookName = Console.ReadLine();
+
+            if (addressBooks.ContainsKey(addressBookName))
+            {
+                Console.WriteLine("Enter the file path to export contacts as JSON:");
+                string filePath = Console.ReadLine();
+
+                addressBooks[addressBookName].ExportContactsToJson(filePath);
+            }
+            else
+            {
+                Console.WriteLine("Address book not found.");
+            }
+        }
+
+        public void ImportContactsjson()
+        {
+            Console.WriteLine("Enter the name of the address book to import contacts:");
+            string addressBookName = Console.ReadLine();
+
+            if (addressBooks.ContainsKey(addressBookName))
+            {
+                Console.WriteLine("Enter the file path to import contacts from JSON:");
+                string filePath = Console.ReadLine();
+
+                addressBooks[addressBookName].ImportContactsFromJson(filePath);
+            }
+            else
+            {
+                Console.WriteLine("Address book not found.");
+            }
+        }
     }
 
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CsvHelper;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -174,6 +176,20 @@ namespace AddressBookSystem
             }
 
             Console.WriteLine("Contacts imported from CSV file successfully.");
+        }
+
+        public void ExportContactsToJson(string filePath)
+        {
+            string json = JsonConvert.SerializeObject(contacts, Formatting.Indented);
+            File.WriteAllText(filePath, json);
+            Console.WriteLine("Contacts exported to JSON file successfully.");
+        }
+
+        public void ImportContactsFromJson(string filePath)
+        {
+            string json = File.ReadAllText(filePath);
+            contacts = JsonConvert.DeserializeObject<List<Contact>>(json);
+            Console.WriteLine("Contacts imported from JSON file successfully.");
         }
 
 
