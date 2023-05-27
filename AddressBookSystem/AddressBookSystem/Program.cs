@@ -25,7 +25,9 @@ namespace AddressBookSystem
                 Console.WriteLine("9. Write Contacts to File");
                 Console.WriteLine("10. Read Contacts from File");
                 Console.WriteLine("11. View Contacts");
-                Console.WriteLine("12. Exit");
+                Console.WriteLine("12. Export Contacts as CSV");
+                Console.WriteLine("13. Import Contacts from CSV");
+                Console.WriteLine("14. Exit");
                 Console.WriteLine("Enter your choice:");
 
                 string choice = Console.ReadLine();
@@ -66,6 +68,12 @@ namespace AddressBookSystem
                         addressBookMain.ViewContacts();
                         break;
                     case "12":
+                        addressBookMain.ExportContacts();
+                        break;
+                    case "13":
+                        addressBookMain.ImportContacts();
+                        break;
+                    case "14":
                         return;
                     default:
                         Console.WriteLine("Invalid choice. Please try again.");

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -151,6 +152,30 @@ namespace AddressBookSystem
 
             Console.WriteLine("Contacts read from file successfully.");
         }
+
+        public void ExportContactsToCsv(string filePath)
+        {
+            using (var writer = new StreamWriter(filePath))
+            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            {
+                csv.WriteRecords(contacts);
+            }
+
+            Console.WriteLine("Contacts exported to CSV file successfully.");
+        }
+
+        public void ImportContactsFromCsv(string filePath)
+        {
+            using (var reader = new StreamReader(filePath))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                var importedContacts = csv.GetRecords<Contact>().ToList();
+                contacts.AddRange(importedContacts);
+            }
+
+            Console.WriteLine("Contacts imported from CSV file successfully.");
+        }
+
 
         private Contact FindContact(string firstName, string lastName)
         {
